@@ -7,15 +7,14 @@ const ResultScreen = () => {
   const { result } = location.state || {};
   const [isReady, setIsReady] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (!result) return;
 
     const img = new Image();
     img.src = result;
 
-    // Load image in background
     img.onload = () => {
-      // Wait for 5 seconds before showing
       setTimeout(() => {
         setIsReady(true);
       }, 2000);
@@ -25,30 +24,35 @@ const ResultScreen = () => {
   if (!result) return <p>No result found</p>;
 
   return (
-    <div className="flex items-center justify-center min-h-screen mt-[60px]">
-      <div className="w-full max-w-[1200px] min-h-[800px] flex items-center justify-evenly transition-all duration-500">
+    <div className="flex items-center justify-center min-h-screen px-6 py-10">
+      <div className="flex flex-row items-center justify-evenly w-full max-w-[1600px] h-full space-x-12 transition-all duration-500">
         {!isReady ? (
-          <div className="flex flex-col items-center justify-center w-full">
-            <p className="text-center font-bold text-[80px] text-[#fff]">
+          <div className="w-full text-center">
+            <p className="font-bold text-[60px] text-white leading-tight">
               All set!
-              <br /> Your avatar’s been shared.
+              <br /> Your avatar’s being prepared...
             </p>
           </div>
         ) : (
           <>
-            <h1 className="font-bold text-[80px] text-[#fff] absolute top-[100px] left-[600px]">
-              Share Your Avatar
-            </h1>
             <img
               src={result}
               alt="Face Swapped Result"
-              className="max-w-[700px] max-h-[700px] object-contain rounded-2xl shadow-lg"
+              className="max-h-[800px] object-contain rounded-2xl shadow-2xl"
             />
-            <QRCode
-              className=" h-auto max-w-[200px] max-h-[200px] shadow-lg p-2 bg-amber-50"
-              value={result}
-              onClick={() => navigate("/")}
-            />
+            <div className="flex flex-col items-center justify-center space-y-8 w-[35%]">
+              <p className="text-white text-[30px] font-semibold text-center leading-snug">
+                Your custom avatar is ready!
+                <br />
+                Scan the QR code to view or share it instantly.
+              </p>
+              <QRCode
+                className="shadow-lg p-4 rounded-2xl bg-white cursor-pointer"
+                value={result}
+                onClick={() => navigate("/")}
+                size={200}
+              />
+            </div>
           </>
         )}
       </div>

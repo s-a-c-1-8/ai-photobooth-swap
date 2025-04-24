@@ -72,7 +72,7 @@ const Camera = ({ onCapture, onSubmit }) => {
               ref={videoRef}
               autoPlay
               playsInline
-              className="rounded-xl w-[960px] h-[540px] object-cover shadow-2xl"
+              className="rounded-xl w-[960px] h-[540px] object-cover shadow-xs shadow-[#fff]"
             />
           ) : (
             <div className="flex justify-center items-center gap-[50px] flex-wrap">

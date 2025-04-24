@@ -48,20 +48,17 @@ const CharacterCard = ({ gender = "Male", onSelect }) => {
   return (
     <div className="flex justify-center items-center mt-[60px] gap-[50px] flex-wrap">
       {images.map((imageName, index) => (
-        <div
-          className="flex flex-col items-center cursor-pointer group"
-          key={index}
-        >
+        <div className="flex flex-col items-center cursor-pointer" key={index}>
           <img
             src={`/${gender}/${imageName}`}
             onClick={() => handleSelect(imageName)}
-            className="w-[305px] h-[305px] rounded-[50%] hover:scale-105 transition-all duration-300 group-hover:scale-105"
+            className="w-[305px] h-[305px] rounded-[50%] hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-[#fff] "
             alt={imageName}
           />
-          <p className="text-white mt-10 text-[35px] relative group-hover:text-[#ccc]">
+          {/* <p className="text-white mt-10 text-[35px] relative group-hover:text-[#ccc]">
             {imageName.split(".")[0]}
             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
-          </p>
+          </p> */}
         </div>
       ))}
     </div>
